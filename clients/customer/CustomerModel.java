@@ -78,12 +78,12 @@ public class CustomerModel extends Observable
           thePic = theStock.getImage( pn );     //    product
         } else {                                //  F
           theAction =                           //   Inform
-            pr.getDescription() +               //    product not
-            " not in stock" ;                   //    in stock
+            "❌ Sorry, " + pr.getDescription() +  //    product not
+            " is currently out of stock" ;      //    in stock
         }
       } else {                                  // F
         theAction =                             //  Inform Unknown
-          "Unknown product number " + pn;       //  product number
+          "⚠️  Product not found. Please check product number: " + pn;  //  product number
       }
     } catch( StockException e )
     {
@@ -100,7 +100,7 @@ public class CustomerModel extends Observable
   {
     String theAction = "";
     theBasket.clear();                        // Clear s. list
-    theAction = "Enter Product Number";       // Set display
+    theAction = "✨ Ready to search! Please enter a product number";  // Set display
     thePic = null;                            // No picture
     setChanged(); notifyObservers(theAction);
   }

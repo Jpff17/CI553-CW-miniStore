@@ -1,20 +1,27 @@
 package catalogue;
 
-import java.io.Serializable;
 import java.util.Collections;
 
 /**
- * Write a description of class BetterBasket here.
- * 
- * @author  Your Name 
- * @version 1.0
+ * Implements a basket that merges duplicate products and sorts them.
  */
-public class BetterBasket extends Basket implements Serializable
-{
+public class BetterBasket extends Basket {
   private static final long serialVersionUID = 1L;
-  
 
-  // You need to add code here
-  // merge the items for same product,
-  // or sort the item based on the product number
+  @Override
+  public boolean add(Product pr) {
+    for (Product existingProduct : this) {
+      if (existingProduct.getProductNum().equals(pr.getProductNum())) {
+        // Item already exists, update quantity
+        existingProduct.setQuantity(existingProduct.getQuantity() + pr.getQuantity());
+        return true; // Indicate that the item was merged
+      }
+    }
+    // Item doesn't exist, add it as a new item
+    return super.add(pr);
+  }
+
+  public void sort() {
+    Collections.sort(this);
+  }
 }

@@ -103,7 +103,7 @@ public class CashierModel extends Observable
     {
       if ( theState != State.checked )          // Not checked
       {                                         //  with customer
-        theAction = "please check its availablity";
+        theAction = "⚠️  Please check product availability first";
       } else {
         boolean stockBought =                   // Buy
           theStock.buyStock(                    //  however
@@ -113,10 +113,10 @@ public class CashierModel extends Observable
         {                                       // T
           makeBasketIfReq();                    //  new Basket ?
           theBasket.add( theProduct );          //  Add to bought
-          theAction = "Purchased " +            //    details
+          theAction = "✅ Successfully purchased: " +  //    details
                   theProduct.getDescription();  //
         } else {                                // F
-          theAction = "!!! Not in stock";       //  Now no stock
+          theAction = "❌ Sorry, item is now out of stock";  //  Now no stock
         }
       }
     } catch( StockException e )
@@ -144,7 +144,7 @@ public class CashierModel extends Observable
         theOrder.newOrder( theBasket );       //  Process order
         theBasket = null;                     //  reset
       }                                       //
-      theAction = "Start New Order";            // New order
+      theAction = "💰 Order completed! Ready for next customer";  // New order
       theState = State.process;               // All Done
        theBasket = null;
     } catch( OrderException e )
@@ -163,7 +163,7 @@ public class CashierModel extends Observable
    */
   public void askForUpdate()
   {
-    setChanged(); notifyObservers("Welcome");
+    setChanged(); notifyObservers("👋 Welcome! Ready to serve customers");
   }
   
   /**

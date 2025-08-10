@@ -108,7 +108,7 @@ public class BackDoorModel extends Observable
       }
       catch ( Exception err)
       {
-        theAction = "Invalid quantity";
+        theAction = "⚠️  Please enter a valid positive number for quantity";
         setChanged(); notifyObservers(theAction);
         return;
       }
@@ -137,7 +137,7 @@ public class BackDoorModel extends Observable
   {
     String theAction = "";
     theBasket.clear();                        // Clear s. list
-    theAction = "Enter Product Number";       // Set display
+    theAction = "📦 Inventory ready. Enter product number to manage stock";  // Set display
     setChanged(); notifyObservers(theAction);  // inform the observer view that model changed
   }
   
